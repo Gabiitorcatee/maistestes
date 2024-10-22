@@ -6,7 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
     <title>FlashCard</title>
-</head>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Bai Jamjuree;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Coloca o canvas atrás de outros elementos */
+        }
+        footer {
+            background-color: black;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 0.2rem;
+        }
+        footer p {
+            text-align: center;
+            font-size: 0.6rem;
+            margin-top: 0.5rem;
+        }
 
 <body>
     <main>
