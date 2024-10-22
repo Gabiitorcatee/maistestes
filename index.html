@@ -31,8 +31,12 @@
             font-size: 0.6rem;
             margin-top: 0.5rem;
         }
+        /* Seu código CSS existente aqui... */
+    </style>
+</head>
 
 <body>
+    <canvas id="canvas"></canvas>
     <main>
         <section id="container">
             <article class="cartao">
@@ -49,7 +53,7 @@
             <article class="cartao">
                 <div class="cartao__conteudo">
                     <h3>Programação</h3>
-                    <div class="cartao__conteudo__pergunta"> <p> Oque é CSS?</p>
+                    <div class="cartao__conteudo__pergunta"> <p> O que é CSS?</p>
                     </div>
                     <div class="cartao__conteudo__resposta"> <p> O CSS é uma linguagem de estilização</p>
                     </div>
@@ -73,6 +77,27 @@
         <p> Projeto desenvolvido pela Alura, sem fins lucrativos</p>
     </footer>
 
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const time = Date.now() * 0.002;
+            const gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, 500);
+            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
+            gradient.addColorStop(0.5, 'rgba(45, 137, 223, 0.5)');
+            gradient.addColorStop(1, 'rgba(0, 89, 255, 0)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
 </body>
 
 </html>
