@@ -1,127 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap');
+
+/* Variáveis CSS */
+:root {
+    --text-color: #ffffff;
+    --card-front-color: #6451bb;
+    --card-back-color: #320083;
+    --background-color: #6e57f0;
+}
+
+/* Estilos Globais */
 body {
-    background: linear-gradient(45deg, rgb(45, 137, 223), rgb(0, 89, 255));
-    background-size: 200% 200%;
-    animation: gradientAnimation 5s ease infinite;
-    font-family: Bai Jamjuree;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: #0a0a0a;
+    margin: 0;
+    padding: 20px;
 }
 
-@keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1; /* Coloca o canvas atrás de outros elementos */
-}
-
-}
-
+/* Footer */
 footer {
     background-color: black;
     color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 0.2rem;
+    height: 2rem;
 }
 
 footer p {
     text-align: center;
     font-size: 0.6rem;
-    margin-top: 0.5rem;
+    margin: 0;
+    padding-top: 0.5rem;
 }
 
+/* Container */
 #container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
+/* Estilos do Cartão */
 .cartao {
-    margin: 1rem 1rem;
+    margin: 1rem;
     background-color: rgb(0, 89, 255);
     height: 20rem;
-    flex-grow: 1;
-    flex-basis: calc(33% -6rem);
-}
-
-.cartao__conteudo {
-    text-align: center;
-    background-color: aquamarine;
-    height: 100%;
-}
-
-.cartao__conteudo h3 {
-    background: rgb(0, 47, 201);
-    text-align: left;
-    padding: 0.5rem;
-    position: absolute;
-    margin: 0.6rem;
-    border-radius: 0.6rem;
-    font-size: 1vw;
+    width: 15rem; /* Definindo uma largura fixa */
+    perspective: 1000px;
 }
 
 .cartao__conteudo {
     text-align: center;
     height: 100%;
     background-color: var(--card-front-color);
-}
-
-.cartao__conteudo__pergunta p {
-    color: var(--text-color);
-    font-weight: 500;
-}
-
-.cartao__conteudo__resposta p {
-    color: var(--card-back-color);
-    font-weight: 700;
+    transform-style: preserve-3d;
+    transition: transform 300ms ease-in-out;
+    position: relative;
 }
 
 .cartao:hover .cartao__conteudo {
     transform: rotateY(180deg);
 }
 
-.cartao__conteudo {
-    background-color: var(--card-front-color);
-    text-align: center;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 300ms ease-in-out;
-}
-
+/* Estilos do Título */
 .cartao__conteudo h3 {
     color: var(--text-color);
+    background: rgb(101, 29, 235);
     border: 1px solid var(--text-color);
     text-align: left;
     padding: 0.5rem;
     position: absolute;
-    margin: 0.6rem;
+    top: 0.6rem;
+    left: 0.6rem;
     border-radius: 0.6rem;
     font-size: 1vw;
     backface-visibility: hidden;
 }
 
-.cartao__conteudo__pergunta,
-.cartao__conteudo__resposta {
-    backface-visibility: hidden;
-}
-
-.cartao__conteudo__resposta {
-    transform: rotateY(180deg);
-}
-
+/* Conteúdo da Pergunta e Resposta */
 .cartao__conteudo__pergunta,
 .cartao__conteudo__resposta {
     backface-visibility: hidden;
     position: absolute;
     height: 100%;
     width: 100%;
+    top: 0;
+    left: 0;
 }
 
-.cartao__conteudo p {
-    margin-top: 1rem;
+.cartao__conteudo__pergunta p {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.cartao__conteudo__resposta {
+    transform: rotateY(180deg);
+}
+
+.cartao__conteudo__resposta p {
+    color: var(--card-back-color);
+    font-weight: 700;
     padding: 2rem;
     margin-top: 4rem;
 }
