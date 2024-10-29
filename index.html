@@ -6,7 +6,7 @@
     <title>Dicionário de Planetas</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(25, 10, 238, 0.87); }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         h1 { text-align: center; }
         .card { border: 1px solid #ccc; border-radius: 8px; padding: 20px; margin: 20px 0; text-align: center; }
         button { background-color: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
@@ -31,7 +31,6 @@
             <div class="form-group">
                 <label>Nome:</label><br>
                 <input type="text" id="nome" required>
-                
             </div>
             <div class="form-group">
                 <label>Apelido:</label><br>
@@ -50,17 +49,7 @@
         </div>
     </div>
 
-    <script><!DOCTYPE html>
-        <html lang="pt-BR">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Dicionário de Planetas</title>
-            <style>
-                body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-                .container { max-width: 600px; margin: 0 auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-                h1 { text-align: center; }
-        …
+    <script>
         let planetas = {
             'Mercúrio': { 'tamanho': 4879, 'distancia': 57.9, 'apelido': 'O Planeta de Fogo' },
             'Vênus': { 'tamanho': 1204, 'distancia': 108.2, 'apelido': 'Estrela dalva ou Vesper' },
@@ -81,17 +70,7 @@
         function sair() {
             alert("Obrigada por utilizar o programa!");
             window.close(); // Isso pode não funcionar em alguns navegadores
-        }<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicionário de Planetas</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1 { text-align: center; }
-…
+        }
 
         function listarPlanetas() {
             let output = document.getElementById("output");
@@ -125,17 +104,7 @@
             const distancia = document.getElementById("distancia").value;
 
             planetas[nome] = { 'apelido': apelido, 'tamanho': tamanho, 'distancia': distancia };
-            document.getElementById("formulario").style.di<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dicionário de Planetas</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1 { text-align: center; }
-…splay = "none";
+            document.getElementById("formulario").style.display = "none";
             listarPlanetas();
         }
 
