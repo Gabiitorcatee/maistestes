@@ -1,103 +1,104 @@
 <!DOCTYPE html>
-<html lang="pt.br">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css">
-    <title>FlashCard</title>
+    <title>Dicionário de Planetas</title>
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: Bai Jamjuree;
-        }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1; /* Coloca o canvas atrás de outros elementos */
-        }
-        footer {
-            background-color: black;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 0.2rem;
-        }
-        footer p {
-            text-align: center;
-            font-size: 0.6rem;
-            margin-top: 0.5rem;
-        }
-        /* Seu código CSS existente aqui... */
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .planet-info { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
     </style>
 </head>
-
 <body>
-    <canvas id="canvas"></canvas>
-    <main>
-        <section id="container">
-            <article class="cartao">
-                <div class="cartao__conteudo">
-                    <h3> Programação</h3>
-                    <div class="cartao__conteudo__pergunta">
-                        <p> O que é JavaScript?</p>
-                    </div>
-                    <div class="cartao__conteudo__resposta">
-                        <p>O JavaScript é uma linguagem da Programação</p>
-                    </div>
-                </div>
-            </article>
-            <article class="cartao">
-                <div class="cartao__conteudo">
-                    <h3>Programação</h3>
-                    <div class="cartao__conteudo__pergunta"> <p> O que é CSS?</p>
-                    </div>
-                    <div class="cartao__conteudo__resposta"> <p> O CSS é uma linguagem de estilização</p>
-                    </div>
-                </div>
-            </article>
-            <article class="cartao">
-                <div class="cartao__conteudo">
-                    <h3> Programação</h3>
-                    <div class="cartao__conteudo__pergunta">
-                        <p> O que é JavaScript?</p>
-                    </div>
-                    <div class="cartao__conteudo__resposta">
-                        <p>O JavaScript é uma linguagem da Programação</p>
-                    </div>
-                </div>
-            </article>
-        </section>
-    </main>
+    <div class="container">
+        <h1>Dicionário de Planetas</h1>
+        <button onclick="listarPlanetas()">Lista de Planetas</button>
+        <button onclick="mostrarFormularioAdicionar()">Adicionar Planeta</button>
 
-    <footer>
-        <p> Projeto desenvolvido pela Alura, sem fins lucrativos</p>
-    </footer>
+        <div id="output"></div>
+
+        <!-- Formulário para adicionar ou editar um planeta -->
+        <div id="formulario" style="display:none;">
+            <h3 id="formTitulo">Adicionar Planeta</h3>
+            <label>Nome:</label><br>
+            <input type="text" id="nome"><br><br>
+            <label>Apelido:</label><br>
+            <input type="text" id="apelido"><br><br>
+            <label>Tamanho:</label><br>
+            <input type="text" id="tamanho"><br><br>
+            <label>Distância do Sol:</label><br>
+            <input type="text" id="distancia"><br><br>
+            <button onclick="salvarPlaneta()">Salvar</button>
+            <button onclick="cancelar()">Cancelar</button>
+        </div>
+    </div>
 
     <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
+        let planetas = {
+            'Mercúrio': { 'tamanho': 4879, 'distancia': 57.9, 'apelido': 'O Planeta de Fogo' },
+            'Vênus': { 'tamanho': 1204, 'distancia': 108.2, 'apelido': 'Estrela dalva ou Vesper' },
+            'Terra': { 'tamanho': 12756, 'distancia': 149.6, 'apelido': 'O Planeta Azul' },
+            'Marte': { 'tamanho': 6792, 'distancia': 227.9, 'apelido': 'O Planeta Vermelho' },
+            'Júpiter': { 'tamanho': 142984, 'distancia': 778.6, 'apelido': 'Gigante Gasoso' },
+            'Saturno': { 'tamanho': 120536, 'distancia': 1433.5, 'apelido': 'Senhor dos Anéis' },
+            'Urano': { 'tamanho': 51118, 'distancia': 2872.5, 'apelido': 'Gigante de Gelo' },
+            'Netuno': { 'tamanho': 49528, 'distancia': 4504.3, 'apelido': 'O Planeta Azul' }
+        };
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const time = Date.now() * 0.002;
-            const gradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, 500);
-            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
-            gradient.addColorStop(0.5, 'rgba(45, 137, 223, 0.5)');
-            gradient.addColorStop(1, 'rgba(0, 89, 255, 0)');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            requestAnimationFrame(animate);
+        function listarPlanetas() {
+            let output = document.getElementById("output");
+            output.innerHTML = "<h2>Lista de Planetas</h2>";
+            for (const planeta in planetas) {
+                const info = planetas[planeta];
+                output.innerHTML += `<div class="planet-info">
+                    <h3>${planeta}</h3>
+                    <p>Tamanho: ${info.tamanho} km</p>
+                    <p>Distância do Sol: ${info.distancia} milhões de km</p>
+                    <p>Apelido: ${info.apelido}</p>
+                    <button onclick="editarPlaneta('${planeta}')">Editar</button>
+                    <button onclick="removerPlaneta('${planeta}')">Remover</button>
+                </div>`;
+            }
         }
 
-        animate();
+        function mostrarFormularioAdicionar() {
+            document.getElementById("formulario").style.display = "block";
+            document.getElementById("formTitulo").innerText = "Adicionar Planeta";
+            document.getElementById("nome").value = "";
+            document.getElementById("apelido").value = "";
+            document.getElementById("tamanho").value = "";
+            document.getElementById("distancia").value = "";
+        }
+
+        function salvarPlaneta() {
+            const nome = document.getElementById("nome").value;
+            const apelido = document.getElementById("apelido").value;
+            const tamanho = document.getElementById("tamanho").value;
+            const distancia = document.getElementById("distancia").value;
+
+            planetas[nome] = { 'apelido': apelido, 'tamanho': tamanho, 'distancia': distancia };
+            document.getElementById("formulario").style.display = "none";
+            listarPlanetas();
+        }
+
+        function cancelar() {
+            document.getElementById("formulario").style.display = "none";
+        }
+
+        function removerPlaneta(nome) {
+            delete planetas[nome];
+            listarPlanetas();
+        }
+
+        function editarPlaneta(nome) {
+            document.getElementById("formulario").style.display = "block";
+            document.getElementById("formTitulo").innerText = "Editar Planeta - " + nome;
+            document.getElementById("nome").value = nome;
+            document.getElementById("apelido").value = planetas[nome].apelido;
+            document.getElementById("tamanho").value = planetas[nome].tamanho;
+            document.getElementById("distancia").value = planetas[nome].distancia;
+        }
     </script>
 </body>
-
 </html>
